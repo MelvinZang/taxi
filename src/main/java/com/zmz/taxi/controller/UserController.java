@@ -1,8 +1,10 @@
 package com.zmz.taxi.controller;
 
+import com.zmz.taxi.bo.req.RegisterReq;
 import com.zmz.taxi.dao.domain.User;
 import com.zmz.taxi.service.UserService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,10 +19,9 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("register")
-    public User register() {
-        User user = new User();
-        user.setAccount("test");
-        userService.register(user);
-        return user;
+    public String register(@RequestBody RegisterReq registerReq) {
+        System.out.println(registerReq);
+        //userService.register(user);
+        return registerReq.getAccount();
     }
 }

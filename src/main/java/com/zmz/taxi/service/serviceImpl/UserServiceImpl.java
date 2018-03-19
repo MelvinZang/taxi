@@ -15,7 +15,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int register(User user) {
-        int i = userMapper.insert(user);
-        return i;
+        int flag = 0;
+        try{
+            flag = userMapper.insert(user);
+        }
+        catch (Exception e){
+            System.out.println("写数据库失败");
+        }
+
+        return flag;
     }
 }
