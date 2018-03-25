@@ -29,7 +29,9 @@ public class UserController {
         User user = UserConvert.RegisterReqConvert(registerReq);
         BaseRes baseRes = userService.register(user);
         //userService.register(user);
-        return JSON.toJSONString(baseRes);
+        String res = JSON.toJSONString(baseRes);
+        System.out.println(res);
+        return res;
     }
 
     @RequestMapping("login")
@@ -37,8 +39,8 @@ public class UserController {
         System.out.println(loginReq);
         User user = UserConvert.loginReqConvert(loginReq);
         BaseRes baseRes = userService.login(user);
-
-        return JSON.toJSONString(baseRes);
+        String res = JSON.toJSONString(baseRes);
+        return res;
 
     }
 }

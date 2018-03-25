@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zmz.taxi.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.zmz.taxi.dao.domain.Order" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_driver" property="userDriver" jdbcType="VARCHAR" />
+    <result column="user_customer" property="userCustomer" jdbcType="VARCHAR" />
+    <result column="total_time_number" property="totalTimeNumber" jdbcType="VARCHAR" />
+    <result column="wait_time_number" property="waitTimeNumber" jdbcType="VARCHAR" />
+    <result column="distance_number" property="distanceNumber" jdbcType="VARCHAR" />
+    <result column="price_number" property="priceNumber" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_driver, user_customer, total_time_number, wait_time_number, distance_number, 
+    price_number, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from `order`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByCustomerAccount" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from `order`
+    where user_customer = #{account,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByDriverAccount" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from `order`
+    where user_driver = #{account,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zmz.taxi.dao.domain.Order" >
+    insert into `order` (id, user_driver, user_customer,
+      total_time_number, wait_time_number, distance_number, 
+      price_number, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{userDriver,jdbcType=VARCHAR}, #{userCustomer,jdbcType=VARCHAR}, 
+      #{totalTimeNumber,jdbcType=VARCHAR}, #{waitTimeNumber,jdbcType=VARCHAR}, #{distanceNumber,jdbcType=VARCHAR}, 
+      #{priceNumber,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zmz.taxi.dao.domain.Order" >
+    insert into `order`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userDriver != null" >
+        user_driver,
+      </if>
+      <if test="userCustomer != null" >
+        user_customer,
+      </if>
+      <if test="totalTimeNumber != null" >
+        total_time_number,
+      </if>
+      <if test="waitTimeNumber != null" >
+        wait_time_number,
+      </if>
+      <if test="distanceNumber != null" >
+        distance_number,
+      </if>
+      <if test="priceNumber != null" >
+        price_number,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userDriver != null" >
+        #{userDriver,jdbcType=VARCHAR},
+      </if>
+      <if test="userCustomer != null" >
+        #{userCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="totalTimeNumber != null" >
+        #{totalTimeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="waitTimeNumber != null" >
+        #{waitTimeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="distanceNumber != null" >
+        #{distanceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="priceNumber != null" >
+        #{priceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zmz.taxi.dao.domain.Order" >
+    update order
+    <set >
+      <if test="userDriver != null" >
+        user_driver = #{userDriver,jdbcType=VARCHAR},
+      </if>
+      <if test="userCustomer != null" >
+        user_customer = #{userCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="totalTimeNumber != null" >
+        total_time_number = #{totalTimeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="waitTimeNumber != null" >
+        wait_time_number = #{waitTimeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="distanceNumber != null" >
+        distance_number = #{distanceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="priceNumber != null" >
+        price_number = #{priceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zmz.taxi.dao.domain.Order" >
+    update order
+    set user_driver = #{userDriver,jdbcType=VARCHAR},
+      user_customer = #{userCustomer,jdbcType=VARCHAR},
+      total_time_number = #{totalTimeNumber,jdbcType=VARCHAR},
+      wait_time_number = #{waitTimeNumber,jdbcType=VARCHAR},
+      distance_number = #{distanceNumber,jdbcType=VARCHAR},
+      price_number = #{priceNumber,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

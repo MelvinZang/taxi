@@ -13,4 +13,8 @@ public class HTTPConstants {
     public final static String LOGIN_SUCCESS = "login success";
 
     public final static String LOGIN_PASSWORD_WRONG = "login password wrong";
+
+    public final static String SAVE_ORDER_SUCCESS = "order saved success";
+
+    public final static String SAVE_ORDER_FAIL = "order saved failed";
 }

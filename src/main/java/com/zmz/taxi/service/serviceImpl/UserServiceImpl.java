@@ -1,5 +1,6 @@
 package com.zmz.taxi.service.serviceImpl;
 
+import com.alibaba.fastjson.JSON;
 import com.zmz.taxi.bo.res.BaseRes;
 import com.zmz.taxi.dao.UserMapper;
 import com.zmz.taxi.dao.domain.User;
@@ -44,6 +45,7 @@ public class UserServiceImpl implements UserService {
             if(userBase != null){
                 if (user.getPassword().equals(userBase.getPassword())){
                     baseRes = BaseRes.getSuccess(LOGIN_SUCCESS);
+                    baseRes.setReturnMessage(JSON.toJSONString(userBase));
                 }else{
                     baseRes = BaseRes.getError(LOGIN_PASSWORD_WRONG);
                 }
