@@ -16,9 +16,9 @@ spring:
   profiles: dev
 
   datasource:
-    url: jdbc:mysql://119.29.64.98:3306/taxi
-    username: root
-    password: Mingzhe123
+    url: jdbc:mysql:
+    username: 
+    password: 
     driver-class-name: com.mysql.jdbc.Driver
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
