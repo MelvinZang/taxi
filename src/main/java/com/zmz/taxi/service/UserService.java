@@ -5,6 +5,7 @@ import com.zmz.taxi.dao.domain.User;
 
 public interface UserService {
 
+
     public BaseRes register(User user);
 
     public BaseRes login(User user);

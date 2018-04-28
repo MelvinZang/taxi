@@ -4,7 +4,7 @@ package com.zmz.taxi.bo.req;
 import java.io.Serializable;
 
 
-public class BaseReq implements Serializable {
+public class  BaseReq implements Serializable {
     private static final long serialVersionUID = -686671523221888398L;
 
     /**

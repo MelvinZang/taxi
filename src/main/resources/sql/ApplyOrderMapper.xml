@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zmz.taxi.dao.ApplyOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.zmz.taxi.dao.domain.ApplyOrder" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_customer" property="userCustomer" jdbcType="VARCHAR" />
+    <result column="start_location" property="startLocation" jdbcType="VARCHAR" />
+    <result column="end_location" property="endLocation" jdbcType="VARCHAR" />
+    <result column="is_show" property="isShow" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="customer_confirm" property="customerConfirm" jdbcType="VARCHAR" />
+    <result column="driver_confirm" property="driverConfirm" jdbcType="VARCHAR" />
+    <result column="user_driver" property="userDriver" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_customer, start_location, end_location, is_show, create_time, update_time, 
+    customer_confirm, driver_confirm, user_driver
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from apply_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+    <select id="selectByUserCustomerAndIsShow" resultMap="BaseResultMap" parameterType="com.zmz.taxi.dao.domain.ApplyOrder" >
+        select
+        <include refid="Base_Column_List" />
+        from apply_order
+        where user_customer = #{userCustomer,jdbcType=VARCHAR}
+        and is_show = #{isShow, jdbcType=VARCHAR}
+    </select>
+    <select id="selectByIsShow" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from apply_order
+        where is_show = '1'
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from apply_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.zmz.taxi.dao.domain.ApplyOrder" >
+    insert into apply_order (id, user_customer, start_location, 
+      end_location, is_show, create_time, 
+      update_time, customer_confirm, driver_confirm, user_driver
+      )
+    values (#{id,jdbcType=BIGINT}, #{userCustomer,jdbcType=VARCHAR}, #{startLocation,jdbcType=VARCHAR}, 
+      #{endLocation,jdbcType=VARCHAR}, #{isShow,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{customerConfirm,jdbcType=VARCHAR}, #{driverConfirm,jdbcType=VARCHAR}, #{userDriver,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zmz.taxi.dao.domain.ApplyOrder" >
+    insert into apply_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userCustomer != null" >
+        user_customer,
+      </if>
+      <if test="startLocation != null" >
+        start_location,
+      </if>
+      <if test="endLocation != null" >
+        end_location,
+      </if>
+      <if test="isShow != null" >
+        is_show,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="customerConfirm != null" >
+        customer_confirm,
+      </if>
+      <if test="driverConfirm != null" >
+        driver_confirm,
+      </if>
+      <if test="userDriver != null" >
+        user_driver,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userCustomer != null" >
+        #{userCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="startLocation != null" >
+        #{startLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="endLocation != null" >
+        #{endLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null" >
+        #{isShow,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerConfirm != null" >
+        #{customerConfirm,jdbcType=VARCHAR},
+      </if>
+      <if test="driverConfirm != null" >
+        #{driverConfirm,jdbcType=VARCHAR},
+      </if>
+      <if test="userDriver != null" >
+        #{userDriver,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zmz.taxi.dao.domain.ApplyOrder" >
+    update apply_order
+    <set >
+      <if test="userCustomer != null" >
+        user_customer = #{userCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="startLocation != null" >
+        start_location = #{startLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="endLocation != null" >
+        end_location = #{endLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null" >
+        is_show = #{isShow,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerConfirm != null" >
+        customer_confirm = #{customerConfirm,jdbcType=VARCHAR},
+      </if>
+      <if test="driverConfirm != null" >
+        driver_confirm = #{driverConfirm,jdbcType=VARCHAR},
+      </if>
+      <if test="userDriver != null" >
+        user_driver = #{userDriver,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zmz.taxi.dao.domain.ApplyOrder" >
+    update apply_order
+    set user_customer = #{userCustomer,jdbcType=VARCHAR},
+      start_location = #{startLocation,jdbcType=VARCHAR},
+      end_location = #{endLocation,jdbcType=VARCHAR},
+      is_show = #{isShow,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      customer_confirm = #{customerConfirm,jdbcType=VARCHAR},
+      driver_confirm = #{driverConfirm,jdbcType=VARCHAR},
+      user_driver = #{userDriver,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
